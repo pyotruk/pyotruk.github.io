@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>QA Calc</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+          integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+    <script>
+        $(function () {
+            var qaCalc = $('#qa-calc');
+            var qaResult = qaCalc.find('#qa-calc-result');
+
+            function calcLog10(n) {
+                return Math.log10(n);
+            };
+
+            function calcSqr(n) {
+                return Math.sqrt(n);
+            };
+
+            qaCalc.submit(function (e) {
+                e.preventDefault();
+                var num = qaCalc.find('input[name=number]').val();
+                num = parseInt(num);
+
+                qaResult.find('div.log10 > em').html(calcLog10(num));
+                qaResult.find('div.sqr > em').html(calcSqr(num));
+            });
+        })
+    </script>
+
+    <style>
+        #qa-calc {
+            max-width: 400px;
+            margin: 2em auto;
+        }
+        #qa-calc-result {
+            margin-top: 2em;
+        }
+        #qa-calc-result em {
+            margin: 0 1em;
+            font-weight: bold;
+            font-style: normal;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+
+<form id="qa-calc">
+    <div class="form-group">
+        <input type="text" name="number" class="form-control" placeholder="Enter number"/>
+    </div>
+    <button type="submit" class="btn btn-primary">Calculate</button>
+
+    <div id="qa-calc-result">
+        <h4>Result</h4>
+        <div class="log10">
+            <span>Log10 = </span>
+            <em></em>
+        </div>
+        <div class="sqr">
+            <span>Sqr = </span>
+            <em></em>
+        </div>
+    </div>
+</form>
+
+</body>
+</html>
